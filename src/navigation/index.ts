@@ -1,5 +1,4 @@
-import RootBottomTab from './RootBottomTab';
-import AuthStack from './AuthStack';
+import BottomTab from './BottomTab';
 import Routes from './Routes';
 
-export { RootBottomTab, AuthStack, Routes };
+export {BottomTab, Routes};

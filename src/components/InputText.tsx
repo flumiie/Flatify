@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
+  Dimensions,
   Pressable,
   StyleSheet,
   TextStyle,
@@ -16,6 +17,9 @@ import { styles } from '../styles/InputText';
 interface TextInputProps extends RNTextInputProps {
   label: string;
   labelSize?: number;
+  touched?: boolean;
+  error?: string;
+  errorSize?: number;
 }
 
 export default (props: TextInputProps) => {
@@ -28,6 +32,7 @@ export default (props: TextInputProps) => {
     <>
       <Pressable
         style={{
+          display: 'flex',
           top: labelTopPos,
           left: !!labelTopPos ? 8 : 0,
           zIndex: 1,
@@ -37,9 +42,14 @@ export default (props: TextInputProps) => {
           textInputRef.current?.focus();
         }}
       >
-        <Text style={{ paddingTop: 8, fontSize: props.labelSize ?? 14 }}>
+        <Text style={{
+          color: '#aaa',
+          paddingTop: 8,
+          fontSize: props.labelSize ?? 14
+        }}>
           {props.label}
         </Text>
+        {props.touched && props.error ? <Text style={{ color: '#ff6666' }}>{props.error}</Text> : null}
       </Pressable>
       <RNTextInput
         {...props}

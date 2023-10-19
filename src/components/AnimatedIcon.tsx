@@ -1,7 +1,7 @@
 import React from 'react';
-import AnimatedLottieView, { AnimatedLottieViewProps } from 'lottie-react-native';
+import AnimatedLottieView, { LottieViewProps } from 'lottie-react-native';
 
-export default (props: AnimatedLottieViewProps) => {
+export default (props: LottieViewProps) => {
   return (
     <AnimatedLottieView
       {...props}

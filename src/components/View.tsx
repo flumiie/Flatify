@@ -17,7 +17,7 @@ export default (props: ViewProps) => {
   const insets = useSafeAreaInsets();
   const useInsets = Platform.OS === 'ios';
   const isDarkMode = useColorScheme() === 'dark';
-  const backgroundColor = isDarkMode ? Colors.black : Colors.white;
+  const backgroundColor = isDarkMode ? 'transparent' : '#ddd';
   return (
     <RNView
       style={

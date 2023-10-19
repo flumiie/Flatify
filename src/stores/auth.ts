@@ -1,6 +1,7 @@
 import pkceChallenge from 'react-native-pkce-challenge';
-import { generateRandomString } from './actions';
-import { base64UrlEncode } from 'react-native-pkce-challenge/lib/typescript/utils';
+import {generateRandomString} from './actions';
+import {base64UrlEncode} from 'react-native-pkce-challenge/lib/typescript/utils';
+import axios from 'axios';
 
 const client_id = '0310e97b325d4f189e1323d8316b8ee7';
 const redirect_uri = 'http://localhost:8080';
@@ -9,6 +10,12 @@ async function generateCodeChallenge() {
   const challenge = pkceChallenge();
   return base64UrlEncode(challenge.codeChallenge);
 }
+
+export const getSpotifyCredentials = async () => {
+  const res = await axios.get('/api/spotify-credentials');
+  const spotifyCredentials = res.data;
+  return spotifyCredentials;
+};
 
 export default () => {
   generateCodeChallenge().then((code_challenge: string) => {
