@@ -1,4 +1,4 @@
-package com.flatify;
+package com.flumi.Flatify;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

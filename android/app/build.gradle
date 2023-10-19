@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.flatify"
+    namespace "com.flumi.Flatify"
     defaultConfig {
-        applicationId "com.flatify"
+        applicationId "com.flumi.Flatify"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

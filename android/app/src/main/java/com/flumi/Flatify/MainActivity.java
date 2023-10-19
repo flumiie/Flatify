@@ -1,4 +1,4 @@
-package com.flatify;
+package com.flumi.Flatify;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
