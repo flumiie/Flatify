@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "ios": "npx react-native run-ios",
+    "ios": "npx react-native run-ios --simulator='iPhone 15 Pro Max'",
     "android": "npx react-native run-android",
     "lint": "eslint .",
     "start": "react-native start",

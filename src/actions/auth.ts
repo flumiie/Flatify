@@ -39,12 +39,10 @@ const getAuth = async (
 const performAuth = async (
   via: 'spotify' | 'phone' | 'google' | 'facebook',
 ) => {
-  const clientId = client_id ?? '';
-
   const config: AuthConfiguration = {
     issuer: 'https://accounts.spotify.com',
     redirectUrl: 'http://localhost/--/spotify-auth-callback',
-    clientId,
+    clientId: client_id ?? '',
     scopes: [
       'user—read-email',
       'user-library-read',
@@ -56,8 +54,8 @@ const performAuth = async (
     ],
   };
 
-  const res = await authorize(config);
-  console.warn(res);
+  const res = await authorize(config); // TODO: This causes force close on iOS, fix me please
+  console.log(res);
 };
 
 export {getAuth, performAuth};

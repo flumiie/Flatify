@@ -1,9 +1,10 @@
 import React from 'react';
-import { Pressable, PressableProps, ViewStyle, useColorScheme } from 'react-native';
+import { Pressable, PressableProps, StyleProp, StyleSheet, ViewStyle, useColorScheme } from 'react-native';
 import { theme } from '../theme';
 
 interface ButtonProps extends PressableProps {
   type: 'outline' | 'green-fill';
+  buttonStyle?: ViewStyle;
 }
 
 export default (props: ButtonProps) => {
@@ -15,14 +16,8 @@ export default (props: ButtonProps) => {
       <Pressable
         style={{
           backgroundColor: '#1D8954',
-          padding: 10,
-          marginHorizontal: 'auto',
-          width: 300,
-          borderRadius: 30,
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'row',
-          ...props.style as ViewStyle
+          ...styles.button,
+          ...props.buttonStyle,
         }}
         {...props}
       >
@@ -36,15 +31,8 @@ export default (props: ButtonProps) => {
       style={{
         backgroundColor: '#131624',
         borderColor: '#c0c0c0',
-        borderWidth: 1,
-        padding: 10,
-        marginHorizontal: 'auto',
-        width: 300,
-        borderRadius: 30,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        ...props.style as ViewStyle
+        ...styles.button,
+        ...props.buttonStyle,
       }}
       {...props}
     >
@@ -52,3 +40,16 @@ export default (props: ButtonProps) => {
     </Pressable>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    marginHorizontal: 'auto',
+    padding: 10,
+    width: 300,
+    borderRadius: 30,
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row'
+  }
+})
