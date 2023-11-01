@@ -3,8 +3,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import { Facebook, GoogleCircle, Phone, Spotify } from 'iconoir-react-native';
 import { StatusBar, Text, Button } from '../components';
 import { useNavigation } from '@react-navigation/native';
-import { AuthConfiguration, authorize } from 'react-native-app-auth';
+
 import { client_id } from '../vars/env';
+import { AuthConfiguration, authorize } from 'react-native-app-auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default () => {
   const navigation = useNavigation();
@@ -12,25 +14,33 @@ export default () => {
   const performAuth = async (
     via: 'spotify' | 'phone' | 'google' | 'facebook',
   ) => {
-    const clientId = client_id ?? '';
+    if (via === 'spotify') {
+      const config: AuthConfiguration = {
+        issuer: 'https://accounts.spotify.com',
+        redirectUrl: 'http://localhost/--/spotify-auth-callback',
+        clientId: client_id ?? '',
+        scopes: [
+          'user—read-email',
+          'user-library-read',
+          'user-read-recently-played',
+          'user-top—read',
+          'playlist-read-private',
+          'playlist-read—cottaborative',
+          'playlist-modify-public', // or playlist-modify-private,
+        ],
+      };
 
-    const config: AuthConfiguration = {
-      issuer: 'https://accounts.spotify.com',
-      redirectUrl: 'http://localhost/--/spotify-auth-callback',
-      clientId,
-      scopes: [
-        'user—read-email',
-        'user-library-read',
-        'user-read-recently-played',
-        'user-top—read',
-        'playlist-read-private',
-        'playlist-read—cottaborative',
-        'playlist-modify-public', // or playlist-modify-private,
-      ],
-    };
+      const res = await authorize(config); // TODO: This causes force close on iOS, fix me please
+      if (res.accessToken) {
+        const expDate = new Date(res.accessTokenExpirationDate).getTime();
+        AsyncStorage.setItem('access_token', res.accessToken);
+        AsyncStorage.setItem('expiration_date', expDate.toString());
+        navigation.navigate('Home')
+      }
+      return null;
+    }
 
-    const res = await authorize(config);
-    console.warn(res);
+    return null;
   };
 
   return (
@@ -64,7 +74,7 @@ export default () => {
             marginBottom: 80
           }}
         >
-          {`Millions of Songs ready for you\non Spotify`}
+          {`Millions of Songs\nready for you\non Spotify`}
         </Text>
         <Button
           type='green-fill'

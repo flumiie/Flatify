@@ -510,6 +510,7 @@ export SENTRY_PROPERTIES=sentry.properties
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P992A77KMF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Flatify/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Flatify;
@@ -525,8 +526,12 @@ export SENTRY_PROPERTIES=sentry.properties
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.flumi.Flatify;
 				PRODUCT_NAME = Flatify;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -539,6 +544,7 @@ export SENTRY_PROPERTIES=sentry.properties
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P992A77KMF;
 				INFOPLIST_FILE = Flatify/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Flatify;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -553,7 +559,11 @@ export SENTRY_PROPERTIES=sentry.properties
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.flumi.Flatify;
 				PRODUCT_NAME = Flatify;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -627,7 +637,11 @@ export SENTRY_PROPERTIES=sentry.properties
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -697,7 +711,11 @@ export SENTRY_PROPERTIES=sentry.properties
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
