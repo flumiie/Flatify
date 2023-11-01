@@ -1,10 +1,10 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import { styles } from '../styles/App';
 import { View, StatusBar, Text, ScrollView, Button } from '../components';
 import axios from 'axios';
 import qs from 'qs';
 import { auth_token } from '../vars/env';
-import EncryptedStorage from 'react-native-encrypted-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type MyPlaylistsProps = PropsWithChildren<{
   title: string;
@@ -34,12 +34,12 @@ export default () => {
         }
       });
       if (response.data.access_token) {
-        await EncryptedStorage.setItem(
+        await AsyncStorage.setItem(
           "user_playlists",
           JSON.stringify(response.data)
         );
         console.log(response.data)
-        const es = await EncryptedStorage.getItem('user_playlists');
+        const es = await AsyncStorage.getItem('user_playlists');
         setPlaylists(es);
         return null;
       }

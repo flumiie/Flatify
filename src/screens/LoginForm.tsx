@@ -63,7 +63,7 @@ export default () => {
               secureTextEntry
             />
             <View style={{ paddingVertical: 12 }} />
-            <Button onPress={() => handleSubmit()} title="Submit" />
+            <Button type="outline" onPress={() => handleSubmit()}>Submit</Button>
           </LinearGradient>
         )}
       </Formik>

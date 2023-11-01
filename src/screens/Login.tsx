@@ -2,9 +2,37 @@ import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import { Facebook, GoogleCircle, Phone, Spotify } from 'iconoir-react-native';
 import { View, StatusBar, Text, Button } from '../components';
-import { performAuth } from '../actions';
+import { useNavigation } from '@react-navigation/native';
+import { AuthConfiguration, authorize } from 'react-native-app-auth';
+import { client_id } from '../vars/env';
 
 export default () => {
+  const navigation = useNavigation();
+
+  const performAuth = async (
+    via: 'spotify' | 'phone' | 'google' | 'facebook',
+  ) => {
+    const clientId = client_id ?? '';
+
+    const config: AuthConfiguration = {
+      issuer: 'https://accounts.spotify.com',
+      redirectUrl: 'http://localhost/--/spotify-auth-callback',
+      clientId,
+      scopes: [
+        'user—read-email',
+        'user-library-read',
+        'user-read-recently-played',
+        'user-top—read',
+        'playlist-read-private',
+        'playlist-read—cottaborative',
+        'playlist-modify-public', // or playlist-modify-private,
+      ],
+    };
+
+    const res = await authorize(config);
+    console.warn(res);
+  };
+
   return (
     <>
       <StatusBar />

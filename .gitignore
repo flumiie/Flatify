@@ -23,6 +23,7 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+.env
 ios/.xcode.env.local
 
 # Android/IntelliJ

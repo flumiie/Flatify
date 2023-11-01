@@ -1,3 +1,3 @@
-import {getAuth, performAuth} from './auth';
+import {getAuth} from './auth';
 
-export {getAuth, performAuth};
+export {getAuth};

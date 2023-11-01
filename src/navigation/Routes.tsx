@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import EncryptedStorage from 'react-native-encrypted-storage';
+import * as Keychain from 'react-native-keychain';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { Login } from '../screens';
@@ -12,8 +12,9 @@ export default () => {
 
   useEffect(() => {
     async () => {
-      const session = await EncryptedStorage.getItem("user_session");
-      setLoggedIn(!!session)
+      const credentials = await Keychain.getGenericPassword();
+      if (credentials)
+        setLoggedIn(!!credentials)
     }
   })
 

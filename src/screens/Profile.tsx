@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, StatusBar, Text, ScrollView, Button } from '../components';
-import EncryptedStorage from 'react-native-encrypted-storage';
 import { useNavigation } from '@react-navigation/native';
+import * as Keychain from 'react-native-keychain';
+import { View, StatusBar, Text, ScrollView, Button } from '../components';
 
 
 export default () => {
   const navigation = useNavigation();
 
   const Logout = async () => {
-    await EncryptedStorage.removeItem("user_session");
+    await Keychain.resetGenericPassword();
     navigation.navigate('Login')
     return null
   }
