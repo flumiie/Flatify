@@ -53,7 +53,7 @@ export default () => {
       <StatusBar />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Text>Playlists</Text>
-        <Button onPress={() => { }} title="Play" />
+        <Button type="outline" onPress={() => { }}>Play</Button>
       </ScrollView>
     </View>
   );
